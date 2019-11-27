@@ -1,0 +1,26 @@
+<h1>Búsqueda: <small>{{ termino }}</small></h1>
+<hr />
+
+<div class="card-columns" *ngIf="busqueda.length > 0">
+  <div class="card animated fadeIn" *ngFor="let result of busqueda; let i = index;">
+    <!-- Heroes viene del servicio-->
+    <img class="card-img-top" [src]="result.img" [alt]="result.nombre" />
+    <div class="card-body">
+      <h5 class="card-title">{{ result.nombre }}</h5>
+      <p class="card-text">
+        {{ result.bio }}
+      </p>
+      <p class="card-text">
+        <small class="text-muted">{{ result.aparicion }}</small>
+      </p>
+      <button (click)="verHeroe(result.id-1)" type="button" class="btn btn-outline-primary btn-block">
+        Ver más...
+      </button>
+      <!--<a [routerLink]="['/heroe',i]" class="btn btn-outline-primary">Ver más link...</a>-->
+    </div>
+  </div>
+</div>
+
+<div *ngIf="busqueda.length == 0">
+    <h3>No hay heroes que coincidan con el tipo de búsqueda <span style="font-style: italic; font-weight: bolder;">"{{ termino }}"</span></h3>
+</div>
